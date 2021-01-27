@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react.dom扩展库 -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入babel -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- 引入属性库 -->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+
+    <!-- 脚本 -->
+    <script type="text/babel">
+
+
+        /*
+
+        */
+
+        class Life extends React.Component {
+
+            state={opacity:0.1}
+            
+            death=()=>{
+                
+                //卸载组件
+                ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+            }
+
+            componentDidMount(){
+                this.timer = setInterval(() => {
+                    let {opacity} = this.state
+                    opacity -= 0.1
+                    if(opacity<=0) opacity = 1
+                    this.setState({opacity})
+                }, 200);
+            }
+
+            componentWillUnmount(){
+                clearInterval(this.timer)
+            }
+
+            render(){
+
+                const {opacity} = this.state
+                return (
+                    <div>
+                        <h2 style={{opacity}}>React好难啊，不想活了！</h2>
+                        <button onClick={this.death}>不活了</button>
+                    </div>
+                )
+            }
+  
+        }
+
+        ReactDOM.render(<Life />, document.getElementById('test'))
+    </script>
+</body>
+
+</html>

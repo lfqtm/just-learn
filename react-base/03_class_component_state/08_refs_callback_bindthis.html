@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react.dom扩展库 -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入babel -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- 引入属性库 -->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+
+    <!-- 脚本 -->
+    <script type="text/babel">
+        class Demo extends React.Component {
+
+            state = {isHot:true}
+
+            showLeft = () => {
+                const { input1 } = this
+                alert(input1.value)
+                console.log(input1);
+            }
+
+            showRight = () => {
+                const { input2 } = this
+                alert(input2.value)
+            }
+
+            changeWeather = () => {
+                const { isHot } = this.state
+                this.setState({
+                    isHot:!isHot
+                })
+            }
+            saveValue=(c)=>{
+                this.input1=c
+                console.log(c)
+            }
+
+            render() {
+                const { isHot } = this.state
+                return (
+                    <div>
+                       <h2>今天天气很{isHot?'炎热':'寒冷'}</h2>
+                       <input ref={this.saveValue} type="text" placeholder="输入提示数据" />&nbsp;
+                       <button onClick={this.showLeft} ref={c=>this.button100=c}>点我提示左侧数据</button>&nbsp;
+                       <input onBlur={this.showRight} ref={c=>this.input2=c} type="text" placeholder="输入提示数据" />
+                       <button onClick={this.changeWeather}>点我切换天气</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.getElementById('test'))
+    </script>
+</body>
+
+</html>

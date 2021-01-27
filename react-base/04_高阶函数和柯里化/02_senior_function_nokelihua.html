@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+</head>
+
+<body>
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react.dom扩展库 -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入babel -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- 引入属性库 -->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+
+    <!-- 脚本 -->
+    <script type="text/babel">
+
+
+        /*
+        高级函数：如果一个函数符合以下任意一点，就高阶函数
+        1.a函数接受的参数是一个函数，a就是高阶函数
+        2.调用a的函数返回值依然是一个函数
+        常见有：Promise，setTimeout，arr.map
+
+        函数柯里化：通过函数调用继续返回函数的方式，实现多次接受参数最后统一处理
+
+        */
+
+        class Demo extends React.Component {
+
+            state = {username:'',password:''}
+            
+            saveFormData = (dataType,value) => {
+                this.setState({
+                        [dataType]:value
+                    })
+            }
+
+            handleSubmit=(event)=>{
+                event.preventDefault()
+                const { username,password } = this.state
+                alert(`您输入的用户名是${username},密码是${password}`);
+            }
+
+            render() {                
+                return (
+                    <form onSubmit={this.handleSubmit}>
+                        用户名: <input onChange={(event)=>this.saveFormData('username',event.target.value)} type='text' name='username'></input>
+                        密码: <input onChange={(event)=>this.saveFormData('password',event.target.value)} type='password' name='password'></input>
+                        <button>提交</button>
+                    </form>
+                )
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.getElementById('test'))
+    </script>
+</body>
+
+</html>
