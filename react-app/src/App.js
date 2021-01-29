@@ -14,13 +14,32 @@ export default class App extends Component {
         ]
     }
 
+    //添加一个组件
     addTodo =(todoObj)=>{
         const {todos} = this.state
         const newTodos = [todoObj,...todos]
         this.setState({
             todos:newTodos
         })
+    }
 
+    //更新一个todo
+    updateTodo =(id,done)=>{
+        const {todos} = this.state
+        const newTodos = todos.map(todo=>{
+            if(todo.id === id) return {...todo,done}
+            else return todo
+        })
+        this.setState({todos:newTodos})
+    }
+
+    //删除一个todo
+    deleteTodo=(id)=>{
+        const {todos} = this.state
+        const newTodos = todos.filter(todo=>{
+            return todo.id !== id
+        })
+        this.setState({todos:newTodos})
     }
 
     render() {
@@ -29,7 +48,7 @@ export default class App extends Component {
             <div className="todo-container">
                 <div className="todo-wrap">
                     <Header addTodo={this.addTodo}/>
-                    <List todos={todos}/>
+                    <List todos={todos} updateTodo={this.updateTodo} deleteTodo={this.deleteTodo}/>
                     <Footer/>                    
                 </div>
             </div>
