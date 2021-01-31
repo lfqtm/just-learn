@@ -34,13 +34,13 @@ export default class Home extends React.Component {
                <Button type="primary" onClick={()=>this.handleButtonClick('del')}>删除todo</Button>&nbsp;
                <Button type="primary" onClick={()=>this.handleButtonClick('reset')}>更新todos</Button>
                <br/>
-               {
+                {
                    store.todos.map((ele, index, arr)=>{
-                       return (
-                           <div key={index}>{ele}</div>
-                       )
-                   })
-               }
+                        return (
+                            <div key={index}>{ele}</div>
+                        )
+                    })
+                }
             </div>
         )
     }
