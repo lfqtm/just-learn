@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import './index.css'
 
 export default class Item extends Component {
+<<<<<<< HEAD
 
     static propTypes = {
         updateTodo:PropTypes.func.isRequired,
@@ -46,4 +47,18 @@ export default class Item extends Component {
             </li>
         )
     }
+=======
+        render() {
+                const { name, done } = this.props
+                return (
+                        <li>
+                                <label>
+                                        <input type="checkbox" defaultChecked={done} />
+                                        <span>{name}</span>
+                                </label>
+                                <button className="btn btn-danger" style={{ display: 'none' }}>删除</button>
+                        </li>
+                )
+        }
+>>>>>>> d8465769931830c73819d7e75ef623c1d22f0066
 }

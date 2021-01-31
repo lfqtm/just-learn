@@ -34,6 +34,7 @@ export default class Home extends React.Component {
                <Button type="primary" onClick={()=>this.handleButtonClick('del')}>删除todo</Button>&nbsp;
                <Button type="primary" onClick={()=>this.handleButtonClick('reset')}>更新todos</Button>
                <br/>
+<<<<<<< HEAD
                {
                    store.todos.map((ele, index, arr)=>{
                        return (
@@ -41,6 +42,15 @@ export default class Home extends React.Component {
                        )
                    })
                }
+=======
+                {
+                   store.todos.map((ele, index, arr)=>{
+                        return (
+                            <div key={index}>{ele}</div>
+                        )
+                    })
+                }
+>>>>>>> d8465769931830c73819d7e75ef623c1d22f0066
             </div>
         )
     }
